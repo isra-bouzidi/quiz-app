@@ -1,6 +1,8 @@
 package com.example.quiz_app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -42,5 +44,13 @@ public class SplashScreen extends AppCompatActivity {
         description.setAnimation(bottomAnim);
         developer.setAnimation(bottomAnim);
 
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 3000);
     }
 }
