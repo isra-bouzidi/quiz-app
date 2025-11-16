@@ -1,8 +1,12 @@
 package com.example.quiz_app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +20,7 @@ public class SignIn extends AppCompatActivity {
     EditText  userEmail, password;
     Button signIn;
     TextView signUp;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +37,32 @@ public class SignIn extends AppCompatActivity {
         password = findViewById(R.id.password);
         signIn = findViewById(R.id.signIn);
         signUp = findViewById(R.id.signUp);
+        progressBar = findViewById(R.id.progressbar);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignIn.this, SignUp.class));
+                finish();
+            }
+        });
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mEmail = userEmail.getText().toString().trim();
+                String mPassword = password.getText().toString();
+
+                if (TextUtils.isEmpty(mEmail)){
+                    userEmail.setError("Please enter your email");
+                    return;
+                }if (TextUtils.isEmpty(mPassword)){
+                    password.setError("Please enter your password");
+                    return;
+                }
+
+                progressBar.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }
