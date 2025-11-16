@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:padding="3dp"
     android:background="#03A9F4"
     android:layout_height="match_parent"
-    android:padding="3dp"
-    tools:context=".SignUp">
+    tools:context=".SignIn">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,25 +19,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up here"
+            android:text="Sign In here"
             android:textSize="37sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:textStyle="bold"
             android:textColor="#FFF"/>
 
-        <EditText
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your name"
-            android:textSize="21sp"
-            android:layout_marginEnd="15dp"
-            android:inputType="textPersonName"
-            android:layout_marginStart="15dp"
-            android:padding="10dp"
-            android:background="@drawable/edittext_background"
-            android:layout_marginTop="60dp"
-            android:textColorHint="@color/black"/>
 
         <EditText
             android:id="@+id/userEmail"
@@ -50,21 +37,9 @@
             android:layout_marginStart="15dp"
             android:padding="10dp"
             android:background="@drawable/edittext_background"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="70dp"
             android:textColorHint="@color/black"/>
-        <EditText
-            android:id="@+id/userPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            android:textSize="21sp"
-            android:layout_marginEnd="15dp"
-            android:inputType="number"
-            android:layout_marginStart="15dp"
-            android:padding="10dp"
-            android:background="@drawable/edittext_background"
-            android:layout_marginTop="25dp"
-            android:textColorHint="@color/black"/>
+
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -83,10 +58,10 @@
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Sign In"
             android:textSize="22sp"
             android:layout_marginTop="30dp"/>
-        
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,14 +72,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already Registered?"
+                android:text="Don't have an account?"
                 android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/signIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sing In"
+                android:text="Sing Up"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
