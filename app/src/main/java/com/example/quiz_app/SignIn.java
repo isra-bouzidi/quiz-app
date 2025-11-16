@@ -27,5 +27,10 @@ public class SignIn extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        userEmail = findViewById(R.id.userEmail);
+        password = findViewById(R.id.password);
+        signIn = findViewById(R.id.signIn);
+        signUp = findViewById(R.id.signUp);
     }
 }
