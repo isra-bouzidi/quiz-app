@@ -8,19 +8,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignIn extends AppCompatActivity {
 
     EditText  userEmail, password;
-    Button signIn;
+    Button signInBtn;
     TextView signUp;
     ProgressBar progressBar;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +43,10 @@ public class SignIn extends AppCompatActivity {
 
         userEmail = findViewById(R.id.userEmail);
         password = findViewById(R.id.password);
-        signIn = findViewById(R.id.signIn);
+        signInBtn = findViewById(R.id.signIn);
         signUp = findViewById(R.id.signUp);
         progressBar = findViewById(R.id.progressbar);
+        mAuth = FirebaseAuth.getInstance();
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +56,7 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
-        signIn.setOnClickListener(new View.OnClickListener() {
+        signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mEmail = userEmail.getText().toString().trim();
@@ -62,6 +71,22 @@ public class SignIn extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
+
+                mAuth.signInWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()){
+                            Toast.makeText(SignIn.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignIn.this, MainActivity.class));
+                            finishAffinity();
+                        }else {
+                            Toast.makeText(SignIn.this, "Please check your User Name and Password or Create a new Account", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+
+                    }
+                });
             }
         });
     }
