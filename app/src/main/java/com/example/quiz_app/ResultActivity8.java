@@ -2,7 +2,6 @@ package com.example.quiz_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity8 extends AppCompatActivity {
 
     TextView correct, wrong, total, result;
     Button home;
@@ -39,23 +38,19 @@ public class ResultActivity extends AppCompatActivity {
         result = findViewById(R.id.result);
         progressBar = findViewById(R.id.circularprogressbar);
 
-        // Récupération des données depuis QuestionActivity
         Intent intent = getIntent();
         int attempted1 = intent.getIntExtra("attempted", 0);
         int correct1 = intent.getIntExtra("correct", 0);
         int wrong1 = intent.getIntExtra("wrong", 0);
 
-        // Affichage dans les TextView
         correct.setText("Correct : " + correct1);
         wrong.setText("Wrong : " + wrong1);
         total.setText("Attempted : " + attempted1);
-
-        // Conversion int -> String pour éviter le crash
         result.setText(String.valueOf(correct1));
         progressBar.setProgress(correct1);
 
-        home.setOnClickListener(view -> {
-            startActivity(new Intent(ResultActivity.this, MainActivity.class));
+        home.setOnClickListener(v -> {
+            startActivity(new Intent(ResultActivity8.this, MainActivity.class));
             finishAffinity();
         });
     }

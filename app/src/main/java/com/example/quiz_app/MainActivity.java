@@ -40,32 +40,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void python(View view) {
-        startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+        startActivity(new Intent(MainActivity.this, QuestionActivity3.class));
         finish();
     }
 
     public void cpp(View view) {
-        startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+        startActivity(new Intent(MainActivity.this, QuestionActivity4.class));
         finish();
     }
 
     public void dart(View view) {
-        startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+        startActivity(new Intent(MainActivity.this, QuestionActivity5.class));
         finish();
     }
 
     public void sql(View view) {
-        startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+        startActivity(new Intent(MainActivity.this, QuestionActivity6.class));
         finish();
     }
 
     public void xml(View view) {
-        startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+        startActivity(new Intent(MainActivity.this, QuestionActivity7.class));
         finish();
     }
 
     public void c(View view) {
-        startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+        startActivity(new Intent(MainActivity.this, QuestionActivity8.class));
         finish();
     }
 }

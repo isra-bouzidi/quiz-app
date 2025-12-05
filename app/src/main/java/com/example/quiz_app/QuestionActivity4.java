@@ -15,29 +15,28 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionActivity4 extends AppCompatActivity {
 
     int flag = 0;
-    int marks = 0;
     public static int correct = 0;
     int wrong = 0;
 
     String[] questions = {
-            "What is the default value of a boolean variable in Java?",
-            "Which of the following is true about the final keyword in Java?",
-            "Which of the following statements is true about method overloading in Java?",
+            "Quelle est la sortie de cout << 5 + 3 << endl ; ?",
+            "Comment déclare-t-on un tableau d'entiers de taille 10 en C++ ?",
+            "Quel mot-clé est utilisé pour créer une classe en C++ ?"
     };
 
     String[] options = {
-            "0","false","true","null",
-            "It can be applied only to methods","It can be applied only to variables","It can be applied to classes, methods and variables","It can only be applied to methods and classes",
-            "Methods can have the same name but must have the same parameter list","Methods overloading is based on the return type","Methods can have the same name but must have different parameter lists","Methods overloading is not allowed in java",
+            "53","8","Erreur","0",
+            "int arr[10];","int arr();","array arr[10];","int arr{};",
+            "struct","class","object","define"
     };
 
     String[] answers = {
-            "false",
-            "It can be applied to classes, methods and variables",
-            "Methods can have the same name but must have different parameter lists"
+            "8",
+            "int arr[10];",
+            "class"
     };
 
     TextView quitBtn, dispNo, score, question;
@@ -48,56 +47,45 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_question);
 
-        // Ajustement des insets pour écrans avec barres système
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialisation des vues
         quitBtn = findViewById(R.id.quitBtn);
         question = findViewById(R.id.question);
         score = findViewById(R.id.score);
         dispNo = findViewById(R.id.dispNo);
         next = findViewById(R.id.nextBtn);
         radio_g = findViewById(R.id.answerGroup);
-
         rb1 = findViewById(R.id.radioBtn1);
         rb2 = findViewById(R.id.radioBtn2);
         rb3 = findViewById(R.id.radioBtn3);
-        rb4 = findViewById(R.id.radioBtn4); // Correction ici
+        rb4 = findViewById(R.id.radioBtn4);
 
-        // Affichage de la première question
         loadQuestion();
 
         next.setOnClickListener(v -> {
             if (radio_g.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(QuestionActivity.this, "Please select an option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuestionActivity4.this, "Please select an option", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             RadioButton uAnswer = findViewById(radio_g.getCheckedRadioButtonId());
             String ansText = uAnswer.getText().toString();
 
-            if (ansText.equals(answers[flag])) {
-                correct++;
-                Toast.makeText(QuestionActivity.this, "Hurray! it was correct", Toast.LENGTH_SHORT).show();
-            } else {
-                wrong++;
-                Toast.makeText(QuestionActivity.this, "Oh! it was incorrect", Toast.LENGTH_SHORT).show();
-            }
+            if (ansText.equals(answers[flag])) correct++;
+            else wrong++;
 
             flag++;
             if (flag < questions.length) {
                 loadQuestion();
             } else {
-                marks = correct;
-                Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
+                Intent intent = new Intent(QuestionActivity4.this, ResultActivity4.class);
                 intent.putExtra("attempted", flag);
                 intent.putExtra("correct", correct);
                 intent.putExtra("wrong", wrong);
@@ -109,7 +97,7 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         quitBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
+            Intent intent = new Intent(QuestionActivity4.this, ResultActivity4.class);
             intent.putExtra("attempted", flag);
             intent.putExtra("correct", correct);
             intent.putExtra("wrong", wrong);
@@ -118,14 +106,13 @@ public class QuestionActivity extends AppCompatActivity {
         });
     }
 
-    // Méthode pour charger une question et ses options
     private void loadQuestion() {
         question.setText(questions[flag]);
-        rb1.setText(options[flag * 4]);
-        rb2.setText(options[flag * 4 + 1]);
-        rb3.setText(options[flag * 4 + 2]);
-        rb4.setText(options[flag * 4 + 3]);
-        dispNo.setText((flag + 1) + "/" + questions.length);
+        rb1.setText(options[flag*4]);
+        rb2.setText(options[flag*4 + 1]);
+        rb3.setText(options[flag*4 + 2]);
+        rb4.setText(options[flag*4 + 3]);
+        dispNo.setText((flag+1) + "/" + questions.length);
         score.setText(String.valueOf(correct));
     }
 }
